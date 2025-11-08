@@ -1,0 +1,673 @@
+
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Momo, The national food of Nepal.</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      * {
+        margin: 0;
+        padding: 0;
+        box-sizing: border-box;
+      }
+
+      body {
+        font-family: "Poppins", sans-serif;
+        background: linear-gradient(to bottom, #fff5f0 0%, #ffe8dc 100%);
+        color: #3c2f2f;
+        line-height: 1.6;
+        overflow-x: hidden;
+        position: relative;
+      }
+
+      body::before {
+        content: "";
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background-image: radial-gradient(circle at 20% 50%, rgba(255, 107, 107, 0.05) 0%, transparent 50%),
+                          radial-gradient(circle at 80% 80%, rgba(255, 142, 83, 0.05) 0%, transparent 50%);
+        pointer-events: none;
+        z-index: -1;
+      }
+
+      header {
+        background: linear-gradient(135deg, #ff6b6b 0%, #ff8e53 100%);
+        padding: 1rem 0;
+        position: sticky;
+        top: 0;
+        z-index: 1000;
+        box-shadow: 0 4px 20px rgba(255, 107, 107, 0.3);
+        backdrop-filter: blur(10px);
+      }
+
+      .logo {
+        text-align: center;
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #fff;
+        text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+        padding: 0.5rem 0;
+        letter-spacing: 2px;
+        animation: float 3s ease-in-out infinite;
+      }
+
+      @keyframes float {
+        0%, 100% { transform: translateY(0px); }
+        50% { transform: translateY(-5px); }
+      }
+
+      .logo::before {
+        content: "🥟 ";
+      }
+
+      .logo::after {
+        content: " 🥟";
+      }
+
+      nav {
+        display: flex;
+        justify-content: center;
+        gap: 2rem;
+        margin-top: 0.5rem;
+      }
+
+      .nav-links {
+        color: #fff;
+        text-decoration: none;
+        font-weight: 600;
+        font-size: 1.1rem;
+        transition: all 0.3s ease;
+        position: relative;
+        padding-bottom: 5px;
+      }
+
+      .nav-links::after {
+        content: "";
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 0;
+        height: 2px;
+        background: #ffe8dc;
+        transition: width 0.3s ease;
+      }
+
+      .nav-links:hover {
+        color: #ffe8dc;
+        transform: translateY(-2px);
+      }
+
+      .nav-links:hover::after {
+        width: 100%;
+      }
+
+      #hero {
+        max-width: 1200px;
+        margin: 3rem auto;
+        padding: 0 2rem;
+      }
+
+      .hero-text {
+        background: linear-gradient(135deg, #fff 0%, #fff5f0 100%);
+        padding: 3rem;
+        border-radius: 30px;
+        text-align: center;
+        margin-bottom: 3rem;
+        border: 3px solid #ffb4a2;
+        box-shadow: 0 10px 40px rgba(255, 107, 107, 0.2);
+        animation: fadeInUp 0.8s ease;
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+
+      .hero-text h1 {
+        font-size: 3rem;
+        color: #ff6b6b;
+        margin-bottom: 1rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .hero-text p {
+        font-size: 1.2rem;
+        color: #5a4a42;
+        max-width: 800px;
+        margin: 0 auto;
+        line-height: 1.8;
+      }
+
+      .quote {
+        background: linear-gradient(135deg, #ff8e53 0%, #ff6b6b 100%);
+        color: #fff;
+        padding: 2rem 3rem;
+        border-radius: 20px;
+        font-size: 1.5rem;
+        font-style: italic;
+        text-align: center;
+        margin: 3rem 0;
+        position: relative;
+      }
+
+      .quote::before {
+        content: '"';
+        font-size: 4rem;
+        position: absolute;
+        top: -10px;
+        left: 20px;
+        opacity: 0.5;
+      }
+
+      h2 {
+        text-align: center;
+        color: #ff6b6b;
+        margin: 3rem 0 2rem 0;
+        font-size: 2.5rem;
+        text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.1);
+      }
+
+      .menu {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0;
+      }
+
+      .menu-item {
+        background: #fff;
+        padding: 2rem;
+        border-radius: 20px;
+        box-shadow: 0 5px 20px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        border: 2px solid transparent;
+      }
+
+      .menu-item:hover {
+        transform: translateY(-10px);
+        border: 2px solid #ff8e53;
+      }
+
+      .menu-item h3 {
+        color: #ff6b6b;
+        font-size: 1.8rem;
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+      }
+
+      .menu-item p {
+        color: #5a4a42;
+        line-height: 1.8;
+      }
+
+      .gallery {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+        gap: 2rem;
+        margin: 2rem 0 3rem 0;
+      }
+
+      .gallery-item {
+        background: #fff;
+        border-radius: 20px;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+      }
+
+      .gallery-item:hover {
+        transform: scale(1.05);
+      }
+
+      .gallery-item .img-placeholder {
+        width: 100%;
+        height: 250px;
+        background: linear-gradient(135deg, #ff8e53 0%, #ffb4a2 100%);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-size: 4rem;
+      }
+
+      .gallery-item h4 {
+        padding: 1.5rem;
+        color: #ff6b6b;
+        text-align: center;
+        font-size: 1.3rem;
+      }
+
+      .special-section {
+        background: linear-gradient(135deg, #fff 0%, #ffe8dc 100%);
+        padding: 3rem;
+        border-radius: 30px;
+        margin: 3rem 0;
+        border: 3px solid #ffb4a2;
+      }
+
+      .special-section h2 {
+        margin-top: 0;
+      }
+
+      .features {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+      }
+
+      .feature {
+        text-align: center;
+        padding: 2rem;
+        background: #fff;
+        border-radius: 15px;
+      }
+
+      .feature-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+      }
+
+      .feature h3 {
+        color: #ff6b6b;
+        margin-bottom: 0.5rem;
+      }
+
+      .feature p {
+        color: #5a4a42;
+        font-size: 0.95rem;
+      }
+
+      footer {
+        background: linear-gradient(135deg, #3c2f2f 0%, #5a4a42 100%);
+        color: #fff;
+        text-align: center;
+        padding: 2rem;
+        margin-top: 4rem;
+        bottom: 0px;
+      }
+
+      footer p {
+        font-size: 1.1rem;
+      }
+
+      .gallery-item img {
+        width: 100%;
+        height: auto;
+        display: block;
+      }
+      .history {
+        line-height: 1.8;
+        margin: 0 2rem 3rem 2rem;
+      }
+
+      .history h3 {
+        margin-top: 2rem;
+        color: #ff6b6b;
+      }
+
+      .history p {
+        margin-top: 1rem;
+        color: #5a4a42;
+      }
+
+      .country h3 {
+        font-size: 1.8rem;
+        text-align: center;
+      }
+
+      .country {
+        display: grid;
+        gap: 2rem;
+        margin-top: 1.5rem;
+        justify-content: center;
+        border: 2px solid #ffb4a2;
+        border-radius: 15px;
+        padding: 1rem;
+        background-color: #fff;
+      }
+
+      .country {
+        max-width: 800px;
+        margin: 0 auto 2rem auto;
+      }
+
+      .recipe {
+        display: grid;
+        gap: 2rem;
+        margin-top: 1.5rem;
+        justify-content: center;
+        border: 2px solid #ffb4a2;
+        border-radius: 15px;
+        padding: 1rem;
+        background: linear-gradient(135deg, #fff 0%, #ffe8dc 100%);
+         max-height: 1082px;
+         max-width: 1082px;
+        margin: 0 auto 2rem auto;
+      }
+
+      .recipe h2 {
+        text-align: center;
+        color: #ff6b6b;
+        margin-bottom: 1rem;
+      }
+
+      .recipe p {
+        margin-top: 1rem;
+       color: #5a4a42;
+      }
+
+      .recipe ul {
+        margin-top: 1rem;
+        list-style-type: disc;
+        padding-left: 1.5rem;
+      }
+
+        .recipe ol {
+            margin-top: 1rem;
+            list-style-type: decimal;
+            padding-left: 1.5rem;
+        }
+
+        .recipe li ul p {
+            color: #5a4a42;
+        }
+
+      .contact{
+        display: grid;
+        gap: 2rem;
+        margin-top: 1.5rem;
+        justify-content: center;
+        border: 2px solid #ffb4a2;
+        border-radius: 15px;
+        padding: 1rem;
+        background: linear-gradient(135deg, #fff 0%, #ffe8dc 100%);
+         max-height: 1082px;
+         max-width: 1082px;
+        margin: 0 auto 2rem auto;
+    }
+        .contact h2{
+            text-align: center;
+            color: #ff6b6b;
+            margin-bottom: 1rem;
+        }
+        .contact ul{
+            margin-top: 1rem;
+            list-style-type: none;
+        }
+
+        .contact ul li {
+            margin-bottom: 0.5rem;
+            color: #5a4a42;
+        }
+
+        .contact p{
+            color: #5a4a42;
+            margin-top: 1rem;
+        }
+
+      @media (max-width: 768px) {
+        .hero-text h1 {
+          font-size: 2rem;
+        }
+
+        .hero-text p {
+          font-size: 1rem;
+        }
+
+        .quote {
+          font-size: 1.2rem;
+          padding: 1.5rem;
+        }
+
+        h2 {
+          font-size: 2rem;
+        }
+
+        .menu {
+          grid-template-columns: 1fr;
+        }
+
+        .gallery {
+          grid-template-columns: 1fr;
+        }
+
+        .logo {
+          font-size: 2rem;
+        }
+      }
+
+      .container {
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 2rem;
+      }
+
+      html {
+        scroll-behavior: smooth;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <div class="logo">MoMos</div>
+      <nav>
+        <a class="nav-links" href="#hero">Home</a>
+        <a class="nav-links" href="#special">Special</a>
+        <a class="nav-links" href="#menu">Menu</a>
+        <a class="nav-links" href="#gallery">Gallery</a>
+        <a class="nav-links" href="#history">History</a>
+        <a class="nav-links" href="#recipe">Recipe</a>
+        <a class="nav-links" href="#contact">Contact</a>
+      </nav>
+    </header>
+
+    <section id="hero">
+      <div class="hero-text">
+        <h1>Momo, The Heavenly Dumpling</h1>
+        <p>
+          Momo is not just food, it's a feeling. Hot steam rising through it
+          with the spicy sauce waiting and the bite—it feels like heaven. We can
+          find momo in every street of Nepal, but the homemade momo is just too
+          good to compare.
+        </p>
+      </div>
+
+      <div class="quote">
+        "A plate of momo can fix everything: hunger, mood, and soul."
+      </div>
+
+      <div class="special-section" id="special">
+        <h2>Why Momo is Special?</h2>
+        <div class="features">
+          <div class="feature">
+            <div class="feature-icon">🌶️</div>
+            <h3>Spicy & Flavorful</h3>
+            <p>
+              Perfectly seasoned with aromatic spices that dance on your taste
+              buds
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">👨‍🍳</div>
+            <h3>Handcrafted</h3>
+            <p>
+              Each dumpling is lovingly hand wrapped with traditional techniques
+            </p>
+          </div>
+          <div class="feature">
+            <div class="feature-icon">🥬</div>
+            <h3>Fresh Ingredients</h3>
+            <p>Made with the freshest vegetables and quality meats</p>
+          </div>
+        </div>
+      </div>
+
+      <h2>Popular Types of Momo</h2>
+      <div class="menu" id="menu">
+        <div class="menu-item">
+          <h3>Steamed Momo</h3>
+          <p>
+            It is a traditional steamed dumplings filled with minced meat or
+            vegetables, served with a spicy dipping sauce.It is soft, juicy.It
+            is much more delicious if we eat it with the sauce.
+          </p>
+        </div>
+        <div class="menu-item">
+          <h3>Fried Momo</h3>
+          <p>
+            It is crispy fried dumplings that offer a delightful crunch, filled
+            with a savory mixture of meat or veggies. Golden brown perfection
+            with a satisfying crispy exterior and tender filling. This is my
+            favourite one because of is crispiness and flavor. You should try it
+            once in a lifetime.
+          </p>
+        </div>
+        <div class="menu-item">
+          <h3><Jhol>
+          <Soup></Soup> Momo</h3>
+          <p>
+            It is dumplings served in a flavorful spicy broth, perfect for a
+            comforting meal on a cold day. This soup-style momo is a Nepali
+            favorite that warms your heart and soul. It is best for someone who
+            loves soup/Jhol. It is called jhol momo in nepali.
+          </p>
+        </div>
+      </div>
+
+      <h2>Momo Gallery</h2>
+      <div class="gallery" id="gallery">
+        <div class="gallery-item">
+          <img src="momo1.jpeg" alt="steam momo" />
+          <h4>Steamed Momo</h4>
+        </div>
+        <div class="gallery-item">
+          <img src="momo2.jpeg" alt="fried momo" />
+          <h4>Fried Momo</h4>
+        </div>
+        <div class="gallery-item">
+          <img src="momo3.jpeg" alt="jhol/soup momo" />
+          <h4>Jhol/Soup Momo</h4>
+        </div>
+      </div>
+    </section>
+
+    <section class="history" id="history">
+      <h2>History of Momo</h2>
+      <div class="tibet country">
+        <h3>Origins in Tibet</h3>
+        <p>
+          Momo has many historical theory about how is it invented but the most
+          popular and widely accepted one is that it was originated in tibet.
+          The tibetean word "momo" known as "mog mog" that means "steamed
+          bread". Tradittionaly, it was invented in tibet because of its cold
+          temperature. At first, it was mainly made with vegetables and going
+          through time it was starting to be made with yak's meat and later on
+          many more varieties of momo were invented like chicken momo, fried
+          momo, jhol/soup momo.
+        </p>
+      </div>
+
+      <div class="nepal country">
+        <h3>Introduction to Nepal</h3>
+        <p class="country-p">
+          Momo was introduced to Nepal through Tibetan merchants and traders in
+          kathmandu valley. Over time, it gained insane popularity and became an
+          part of nepali food culture. Momo was evolved with local flavors and
+          ingredients. Some Nepalese peoples loves momo more than any other
+          food. It is now considered as a national food of Nepal.
+        </p>
+      </div>
+      <div class="india country">
+        <h3>Momo spreading in india</h3>
+        <p>
+          Momo made its way to India, particularly in the northeastern states,
+          due to the influence of Tibetan culture and Nepalese migration. It
+          quickly became a popular street food, with sellers offering various
+          types of momo, including steamed, fried, and jhol momo. The Indian
+          adaptation of momo often includes local spices and ingredients, making
+          it a unique fusion dish. Today, momo is enjoyed by people across India
+          and has become a beloved snack in many cities.
+        </p>
+      </div>
+    </section>
+
+    <section class="recipe" id="recipe">
+        <div class="container">
+            <h2>Simple Momo Recipe to Try at Home</h2>
+            <p>
+            Making momo at home can be a fun and rewarding experience. Here's a
+            simple recipe to get you started:
+            </p> <br>
+            <h3>Ingredients:</h3>
+            <ul>
+            <li>2 cups all-purpose flour</li>
+            <li>1/2 cup water</li>
+            <li>1/2 lb ground meat (chicken, pork, or beef) or finely chopped
+                vegetables</li>
+            <li>1 small onion, finely chopped</li>
+            <li>2 cloves garlic, minced</li>
+            <li>1-inch piece ginger, grated</li>
+            <li>1 tsp soy sauce</li>
+            <li>1 tsp sesame oil</li>
+            <li>Salt and pepper to taste</li>
+            </ul> <br>
+            <h3>Instructions:</h3>
+            <ol>
+            <li>In a bowl, mix the flour and water to form a smooth dough. Cover
+                and let it rest for 30 minutes.</li>
+            <li>In another bowl, combine the ground meat or vegetables with onion,
+                garlic, ginger, soy sauce, sesame oil, salt, and pepper.</li>
+            <li>Roll out the dough into thin circles (about 3 inches in diameter).
+            </li>
+            <li>Place a spoonful of filling in the center of each circle.Fold and
+                pleat the edges to seal the momo.</li>
+            <li>Steam the momos in a steamer for about 15-20 minutes until its cooked
+                through.</li>
+            <li>Serve hot with spicy sauce.</li>
+            </ol>
+            <p>Enjoy your homemade momo!</p>
+        </div>
+    </section>
+
+    <section class="contact" id="contact">
+        <div class="container">
+            <h2>Contact Me</h2>
+            <p>
+            Have questions or want to share your momo experience? Reach out to me(Pratik)
+            by:
+            </p>
+            <ul>
+            <li>Email: pratikadhikari904@gmail.com</li>
+            <li>Phone: +977-9845678901</li>
+            <li>Instagram: @pratik_momo_lover</li>
+            <li>Facebook: @pratik.momo.lover.2025</li>
+            <li>Twitter: @pratik_momo_lover</li>
+            <li>Telegram: @pratik_momo_lover</li>
+        </ul>
+    </div>
+    </section>
+    
+    <section class="footer">
+      <footer>
+        <p>Made by Pratik with his love for momo.</p>
+      </footer>
+    </section>
+
+ 
+</body>
+</html>
