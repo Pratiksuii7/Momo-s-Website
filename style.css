@@ -44,12 +44,6 @@
         text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
         padding: 0.5rem 0;
         letter-spacing: 2px;
-        animation: float 3s ease-in-out infinite;
-      }
-
-      @keyframes float {
-        0%, 100% { transform: translateY(0px); }
-        50% { transform: translateY(-5px); }
       }
 
       .logo::before {
